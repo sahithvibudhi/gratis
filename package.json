@@ -1,0 +1,33 @@
+{
+  "name": "gratis",
+  "version": "1.0.0",
+  "description": "A node REST api service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sahithvibudhi/gratis.git"
+  },
+  "keywords": [
+    "REST",
+    "byofe",
+    "backend",
+    "as",
+    "a",
+    "service"
+  ],
+  "author": "sahith vibudhi",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/sahithvibudhi/gratis/issues"
+  },
+  "homepage": "https://github.com/sahithvibudhi/gratis#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "minimist": "^1.2.0",
+    "querystring": "^0.2.0"
+  }
+}
