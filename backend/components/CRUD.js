@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
         case global.CONST.RTYPE.PUT:
             await CRUD.update(req, res);
         break;
-        case global.CONST.RTYPE.DELETE:
+        case global.CONST.RTYPE.DEL:
             await CRUD.delete(req, res);
         break;
         default:
@@ -51,7 +51,10 @@ CRUD = {
     },
     
     delete  : async (req, res) => {
-    
+        var criteria    = db.getQuery(req);
+        var results = await db.getCollection(req).deleteMany(criteria.query);
+        console.log(results, criteria);
+        output(res, results);
     }
 
 }
