@@ -45,15 +45,13 @@ CRUD = {
         row.created_at  = new Date();
         row.author_id   = req.headers['gratis-identifier'];
         row             = { "$set" : row };
-        console.log(criteria, row);
         var results     = await db.getCollection(req).updateMany(criteria.query, row, true);
         output(res, results);
     },
     
     delete  : async (req, res) => {
         var criteria    = db.getQuery(req);
-        var results = await db.getCollection(req).deleteMany(criteria.query);
-        console.log(results, criteria);
+        var results     = await db.getCollection(req).deleteMany(criteria.query);
         output(res, results);
     }
 

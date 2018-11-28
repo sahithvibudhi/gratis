@@ -1,4 +1,5 @@
 const url = require('url');
+const qs  = require('querystring');
 
 module.exports = {
 
