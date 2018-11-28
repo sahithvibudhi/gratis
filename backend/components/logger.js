@@ -3,6 +3,9 @@ module.exports = {
         let shouldLog = (global.argv.log === 'true');
         if(!shouldLog)
             return;
-        console.log(arguments);
+        for(let arg of arguments){
+            arg.date = new Date();
+            console.log(arg);
+        }
     }
 }
