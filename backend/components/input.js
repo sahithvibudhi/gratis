@@ -1,5 +1,6 @@
-const url = require('url');
-const qs  = require('querystring');
+const url       = require('url');
+const qs        = require('querystring');
+const logger    = require('./logger');
 
 module.exports = {
 
@@ -22,6 +23,12 @@ module.exports = {
             var url_parts = url.parse(req.url, true);
             req.pathname = url_parts.pathname;
             req.query = url_parts.query;
+            logger.log({
+                        requestType     : req.headers['content-type'], 
+                        queryInUrl    : req.query, 
+                        requestBody    : req.body,
+                        requestPath    : req.pathname
+                    });
             handle(req, res);
         });
     }

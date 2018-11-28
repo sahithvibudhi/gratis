@@ -1,9 +1,12 @@
 var MongoClient = require('mongodb').MongoClient;
-var url = global.argv.dburl || "mongodb://localhost:27017/";
+const logger    = require('./logger');
+
+var url         = global.argv.dburl || "mongodb://localhost:27017/";
 
 module.exports = {
 
     async getConnection() {
+        logger.log({databaseConnection:url});
         return await MongoClient.connect(url);
     },
 
@@ -29,7 +32,7 @@ module.exports = {
                 query[param] = 1;
             break;
         }
-        console.log(param, query, sign);
+        logger.log({sortParam:param}, {sortQuery:query});
         return query;
     },
 
@@ -42,6 +45,7 @@ module.exports = {
         req.query.limit = parseInt(req.query.limit);
         criteria.limit = req.query.limit > 20 ? 20 : req.query.limit;
         delete req.query.limit;
+        logger.log({criteria});
         return criteria;
     }
 

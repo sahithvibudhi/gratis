@@ -1,5 +1,6 @@
-const http = require('http');
-const requestHandler = require('./requestHandler');
+const http              = require('http');
+const requestHandler    = require('./requestHandler');
+const logger            = require('./logger');
 
 const port = global.argv.port || 8080;
 
@@ -11,9 +12,10 @@ module.exports = {
          })
         .listen(port, err => {
             if(err){
-                console.log('There was an error starting the server', err);
+                logger.log({serverStarted:false, error:err});
+                return;
             }
-            console.log(`server is running on port: ${port}`);
+            logger.log({serverStarted:true, port});
         }); 
     }
 }
