@@ -1,9 +1,9 @@
 # gratis
-An open-source, easy-to-customizable REST api service right out of the box.
+An open-source, easy-to-customize REST api service right out of the box.
 
 ## How to Set up?
 ```
-git clone 
+git clone https://github.com/sahithvibudhi/gratis.git
 cd gratis
 npm install
 node index.js
