@@ -9,8 +9,13 @@ module.exports = async (req, res) => {
     jsonify(req, res, handle)
 }
 
+/**
+ * Handles all the requests
+ * @param req HTTPRequest
+ * @param res HTTPResponse
+ */
 async function handle(req, res) {
-    // if the route is reserved
+    // if the route is reserved - Handles gratis default functionality
     if (req.pathname.startsWith('/gratis')) {
         await gratisHandler(req, res);
     }
