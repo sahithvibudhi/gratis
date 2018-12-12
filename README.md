@@ -25,3 +25,8 @@ To enable logging, use:
 ```
 node index.js --port 9000 --dburl mongodb://localhost:32770 --log true
 ```
+
+Gratis comes with a GUI to create new apps, to enable, use:
+```
+node index.js --dburl mongodb://localhost:32770 --log true --dashboard true
+```
