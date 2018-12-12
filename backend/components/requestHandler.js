@@ -4,6 +4,7 @@ const CRUD              = require('./CRUD');
 const beforeRequest     = require('./../hooks/beforeReq');
 const afterRequest      = require('./../hooks/afterReq');
 const { gratisHandler } = require('./gratisDefaults');
+const { staticHandler } = require('./../../frontend/index');
 
 module.exports = async (req, res) => {
     jsonify(req, res, handle)
@@ -16,7 +17,10 @@ module.exports = async (req, res) => {
  */
 async function handle(req, res) {
     // if the route is reserved - Handles gratis default functionality
-    if (req.pathname.startsWith('/gratis')) {
+    if(req.pathname.startsWith('/frontend')) {
+        staticHandler(req, res);
+    }
+    else if (req.pathname.startsWith('/gratis')) {
         await gratisHandler(req, res);
     }
     // else just perform a CRUD

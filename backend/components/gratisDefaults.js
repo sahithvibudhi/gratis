@@ -1,6 +1,7 @@
 const CRUD      = require('./CRUD');
 const { log }   = require('./logger');
 const request   = require('request');
+const output    = require('./output');
 
 const github_client_token   = global.argv.github_client_token;
 const github_secret_token   = global.argv.github_secret_token;
@@ -25,8 +26,14 @@ module.exports = {
                 log({
                     status: 'received redirect from github'
                 });
-                var resp = await asyncRequest(req);
-                log(resp);
+                var resp = await asyncLogin(req);
+                log({gitHubResp:resp});
+                if(resp.err) {
+                    output(res, resp.err);
+                } else {
+                    
+                    output(res, resp.body);
+                }
                 return;
             }
             log({
@@ -57,7 +64,7 @@ const app          = async (req, res) => {
     await CRUD(req ,res);
 }
 
-const asyncRequest = async (req) => {
+const asyncLogin = async (req) => {
     return new Promise( (resolve, reject) => {
         request.post(
             'https://github.com/login/oauth/access_token',
