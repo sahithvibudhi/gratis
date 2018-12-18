@@ -31,8 +31,14 @@ module.exports = {
                 if(resp.err) {
                     output(res, resp.err);
                 } else {
-                    
-                    output(res, resp.body);
+                    var dashboardURL = global.argv.gratis_dashboard_url;
+                    log({status: 'redirect', url: dashboardURL});
+                    // resp.dashboardURL = dashboardURL;
+                    // output(res, resp.body);
+                    res.writeHead(302, {
+                        'Location': dashboardURL
+                        //add other headers here...
+                    });
                 }
                 return;
             }
