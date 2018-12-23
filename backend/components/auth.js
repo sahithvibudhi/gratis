@@ -1,6 +1,14 @@
+const db        = require('./db');
+const { log }   = require('./logger');
+
 module.exports = {
 
-    isGratisLoggedIn : (req, res) => {
+    isGratisLoggedIn : async (req, res) => {
+        if(req.headers.authorization){
+            var token = req.headers.Authorization;
+            var count = await db.getCollection({details:'/gratis/users'}).count({token});
+            return count > 0;
+        }
         return false;
     },
 

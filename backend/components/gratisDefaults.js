@@ -66,14 +66,14 @@ module.exports = {
          * check if the user is logged in
          */
         headers.setDefaultContentType(req, res);
-        if(!isGratisLoggedIn(req, res)){
+        if(!(await isGratisLoggedIn(req, res))){
             headers.setStatus(req, res, 500);
             output(res, MSGS.NO_AUTH);
             return;
         }
         switch (action) {
             case 'apps':
-                await app(req, res);
+                await apps(req, res);
             break;
         }
     }
@@ -84,7 +84,7 @@ module.exports = {
  * @param req HTTPRequest
  * @param res HTTPResponse 
  */
-const app          = async (req, res) => {
+const apps       = async (req, res) => {
     await CRUD(req ,res);
 }
 
