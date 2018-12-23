@@ -1,9 +1,11 @@
 module.exports = {
 
-    isGratisLoggedIn = (req, res) => {
-        
+    isGratisLoggedIn : (req, res) => {
+        return false;
     },
 
-
+    isValidRESTRequest : (req, res) => {
+        return true;
+    }   
 
 }
