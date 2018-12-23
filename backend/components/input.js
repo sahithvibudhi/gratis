@@ -16,10 +16,13 @@ module.exports = {
         });
         req.on('end', function () {
             req.body = undefined;
-            if(req.headers['content-type'] === global.CONST.CTYPE.FORM_URLENCODED)
-                req.body = qs.parse(body);
-            if(req.headers['content-type'] === global.CONST.CTYPE.JSON)
-                req.body = JSON.parse(body);
+            if(req.headers['content-type'])
+            {
+                if(req.headers['content-type'].startsWith(global.CONST.CTYPE.FORM_URLENCODED))
+                    req.body = qs.parse(body);
+                if(req.headers['content-type'].startsWith(global.CONST.CTYPE.JSON))
+                    req.body = JSON.parse(body);
+            }
             var url_parts = url.parse(req.url, true);
             req.pathname = url_parts.pathname;
             req.query = url_parts.query;

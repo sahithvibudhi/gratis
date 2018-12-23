@@ -4,6 +4,7 @@ const CRUD              = require('./CRUD');
 const beforeRequest     = require('./../hooks/beforeReq');
 const afterRequest      = require('./../hooks/afterReq');
 const { gratisHandler } = require('./gratisDefaults');
+const headers           = require('./../components/headers');
 
 module.exports = async (req, res) => {
     jsonify(req, res, handle)
@@ -15,7 +16,10 @@ module.exports = async (req, res) => {
  * @param res HTTPResponse
  */
 async function handle(req, res) {
-    if (req.pathname.startsWith('/gratis')) {
+    if(req.method == 'OPTIONS') {
+        headers.setCORS(req, res);
+    }
+    else if (req.pathname.startsWith('/gratis')) {
         await gratisHandler(req, res);
     }
     // else just perform a CRUD
