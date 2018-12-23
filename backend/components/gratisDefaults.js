@@ -67,6 +67,7 @@ module.exports = {
          * check if the user is logged in
          */
         headers.setDefaultContentType(req, res);
+        headers.setCORS(req, res);
         if(!(await isGratisLoggedIn(req, res))){
             headers.setStatus(req, res, 500);
             output(res, MSGS.NO_AUTH);

@@ -15,7 +15,7 @@ module.exports = {
             }
         });
         req.on('end', function () {
-            req.body = undefined;
+            req.body = [];
             if(req.headers['content-type'])
             {
                 if(req.headers['content-type'].startsWith(global.CONST.CTYPE.FORM_URLENCODED))
