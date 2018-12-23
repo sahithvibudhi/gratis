@@ -1,3 +1,5 @@
+const headers = require('./../components/headers');
+
 module.exports = (req, res) => {
-    res.setHeader('Content-type', 'application/json');
+    headers.setDefaultContentType(req, res);
 }
