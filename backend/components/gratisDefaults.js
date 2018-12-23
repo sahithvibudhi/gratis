@@ -1,7 +1,12 @@
-const CRUD      = require('./CRUD');
-const { log }   = require('./logger');
-const request   = require('request');
-const output    = require('./output');
+const CRUD                  = require('./CRUD');
+const { log }               = require('./logger');
+const request               = require('request');
+const output                = require('./output');
+const { isGratisLoggedIn }  = require('./auth');
+const { MSGS }              = require('./constants');
+const headers               = require('./headers');
+const db                    = require('./db');
+
 
 const github_client_token   = global.argv.github_client_token;
 const github_secret_token   = global.argv.github_secret_token;
@@ -31,7 +36,14 @@ module.exports = {
                 if(resp.err) {
                     output(res, resp.err);
                 } else {
-                    var dashboardURL = global.argv.gratis_dashboard_url;
+                    // fetch user details
+                    var userData   = await asyncFetchUserDetails(resp.body.access_token);
+                    userData       = JSON.parse(userData.body);
+                    userData.token = resp.body.access_token; 
+                    // check if exists
+                    var updated  = await db.getCollection({details: '/gratis/users'}).update({ id : userData.id}, userData, {upsert:true});
+                    // update details
+                    var dashboardURL = `${global.argv.gratis_dashboard_url}/storeToken/${resp.body.access_token}`;
                     log({status: 'redirect', url: dashboardURL});
                     // resp.dashboardURL = dashboardURL;
                     // output(res, resp.body);
@@ -53,8 +65,14 @@ module.exports = {
         /**
          * check if the user is logged in
          */
+        headers.setDefaultContentType(req, res);
+        if(!isGratisLoggedIn(req, res)){
+            headers.setStatus(req, res, 500);
+            output(res, MSGS.NO_AUTH);
+            return;
+        }
         switch (action) {
-            case 'app':
+            case 'apps':
                 await app(req, res);
             break;
         }
@@ -78,6 +96,22 @@ const asyncLogin = async (req) => {
             (err, resp, body) => {
                 resolve({err, body});
             }
+        );
+    });
+}
+
+const asyncFetchUserDetails = async (access_token) => {
+    return new Promise( (resolve, reject) => {
+        request.get({
+            url     : `https://api.github.com/user?access_token=${access_token}`,
+            headers : {
+                'User-Agent'        : 'gratis'
+            }
+        },
+        (err, resp, body) => {
+            log({err, resp, body});
+            resolve({err, body});
+        }
         );
     });
 }
