@@ -6,6 +6,7 @@ const { isGratisLoggedIn }  = require('./auth');
 const { MSGS }              = require('./constants');
 const headers               = require('./headers');
 const db                    = require('./db');
+const randomGenerator       = require('./randomGenerator');
 
 
 const github_client_token   = global.argv.github_client_token;
@@ -71,6 +72,7 @@ module.exports = {
             output(res, MSGS.NO_AUTH);
             return;
         }
+        req.headers['gratis-identifier'] = req.userData.id;
         switch (action) {
             case 'apps':
                 await apps(req, res);
@@ -85,6 +87,8 @@ module.exports = {
  * @param res HTTPResponse 
  */
 const apps       = async (req, res) => {
+    req.body['gratis-identifier'] = randomGenerator.gratisIdentifier(req);
+    req.body['gratis-secret']     = randomGenerator.gratisSecret();
     await CRUD(req ,res);
 }
 
