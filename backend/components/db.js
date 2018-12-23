@@ -10,9 +10,16 @@ module.exports = {
         return await MongoClient.connect(url);
     },
 
-    getCollection(req) {
+    getCollection(opts) {
         // TODO: error handling
-        var burstedURL = req.pathname.split('/');
+
+        var burstedURL = undefined;
+        if(opts.details) {
+            burstedURL = opts.details.split('/');
+        }
+        else {
+            burstedURL = opts.pathname.split('/');
+        }
         var dbName = burstedURL[1];
         var collectionName = burstedURL[2];
         return global.dbConnection.db(dbName).collection(collectionName);
