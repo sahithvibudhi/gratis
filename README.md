@@ -1,5 +1,5 @@
 # gratis
-An open-source, easy-to-customize REST api service right out of the box.
+An open-source, easy-to-customize back-end service right out of the box.
 
 ## How to Set up?
 ```
