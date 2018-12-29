@@ -26,6 +26,12 @@ module.exports = {
             var url_parts = url.parse(req.url, true);
             req.pathname = url_parts.pathname;
             req.query = url_parts.query;
+            /**
+             * converting _id if present
+             */
+            if(req.query._id){
+                req.query._id = global.mongoObjId(req.query._id);
+            }
             logger.log({
                         requestType     : req.headers['content-type'], 
                         queryInUrl    : req.query, 
