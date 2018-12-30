@@ -8,7 +8,6 @@ const headers               = require('./headers');
 const db                    = require('./db');
 const randomGenerator       = require('./randomGenerator');
 
-
 const github_client_token   = global.argv.github_client_token;
 const github_secret_token   = global.argv.github_secret_token;
 const host                  = global.argv.host;
@@ -41,6 +40,7 @@ module.exports = {
                     var userData   = await asyncFetchUserDetails(resp.body.access_token);
                     userData       = JSON.parse(userData.body);
                     userData.token = resp.body.access_token; 
+                    userData.author_id = userData.id;
                     // check if exists
                     var updated  = await db.getCollection({details: '/gratis/users'}).update({ id : userData.id}, userData, {upsert:true});
                     // update details
@@ -78,6 +78,9 @@ module.exports = {
             case 'apps':
                 await apps(req, res);
             break;
+            case 'users':
+                await users(req, res);
+            break;
         }
     }
 }
@@ -95,6 +98,13 @@ const apps       = async (req, res) => {
         req.body['gratis-secret']     = randomGenerator.gratisSecret();
     }
     await CRUD(req ,res);
+}
+
+const users      = async (req, res) => {
+    if(req.method === global.CONST.RTYPE.GET)
+    {
+        await CRUD(req, res);
+    }
 }
 
 const asyncLogin = async (req) => {
