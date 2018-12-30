@@ -88,8 +88,12 @@ module.exports = {
  * @param res HTTPResponse 
  */
 const apps       = async (req, res) => {
-    req.body['gratis-identifier'] = randomGenerator.gratisIdentifier(req);
-    req.body['gratis-secret']     = randomGenerator.gratisSecret();
+    // Do not update credentials
+    if (req.method !== global.CONST.RTYPE.PUT) 
+    {
+        req.body['gratis-identifier'] = randomGenerator.gratisIdentifier(req);
+        req.body['gratis-secret']     = randomGenerator.gratisSecret();
+    }
     await CRUD(req ,res);
 }
 
