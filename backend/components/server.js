@@ -15,6 +15,7 @@ module.exports = {
                 logger.log({serverStarted:false, error:err});
                 return;
             }
+            logger.startMsg();
             logger.log({serverStarted:true, port});
         }); 
     }
