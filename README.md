@@ -1,6 +1,8 @@
 # gratis
 An open-source, easy-to-customize back-end service right out of the box. Write your front-end let gratis handle the Back-end. ⚡
 
+![How to use](quick-start.gif)
+
 1. [Quick Start](#-quick-start)
 2. [ How to Use?](#-how-to-use)
 3. [How to Setup Project in your local environment?](#-how-to-setup-project-in-your-local-environment)
