@@ -17,6 +17,10 @@ module.exports = {
     },
 
     isValidRESTRequest : (req, res) => {
+        if(global.argv.noauth) {
+            req.headers['gratis-identifier'] = 'gratis';
+        }
+        // TODO: Validate gratis-identifier and secret
         return true;
     }   
 
