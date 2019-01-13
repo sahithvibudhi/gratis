@@ -1,6 +1,10 @@
 # gratis
 An open-source, easy-to-customize back-end service right out of the box. Write your front-end let gratis handle the Back-end. ⚡
 
+[1. Quick Start](#-quick-start)
+[2. How to Use?](#-how-to-use)
+[3. How to Setup Project in your local environment?](#-how-to-setup-project-in-your-local-environment)
+
 # 🚀 Quick Start
 
 1. Install Gratis
@@ -64,7 +68,7 @@ curl --request DELETE \
 
 ---
 
-## How to Set up?
+## How to Setup Project in your local environment?
 ```
 git clone https://github.com/sahithvibudhi/gratis.git
 cd gratis
@@ -93,6 +97,11 @@ Gratis comes with a GUI to create new apps, to enable, use:
 ```
 node index.js --dburl mongodb://localhost:32770 --log true --dashboard true
 ```
+
+# TODO:
+- Adapter to use different Data Stores
+- Adapter to use different loggers
+- Make auth Optional
 
 ---
 
