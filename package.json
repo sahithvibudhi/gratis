@@ -1,6 +1,6 @@
 {
   "name": "gratis-server",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A node REST api service",
   "main": "index.js",
   "scripts": {
