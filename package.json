@@ -1,5 +1,5 @@
 {
-  "name": "gratis",
+  "name": "gratis-server",
   "version": "1.0.0",
   "description": "A node REST api service",
   "main": "index.js",
@@ -36,5 +36,9 @@
     "querystring": "^0.2.0",
     "randomstring": "^1.1.5",
     "serve-static": "^1.13.2"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "gratis": "index.js"
   }
 }
