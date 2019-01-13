@@ -19,7 +19,7 @@ That's it 💁‍♂️
 
 # 📖 How to Use?
 
-To Insert Records:
+__To Insert Records:__
 
 ```
 curl --header "Content-Type: application/json" \
@@ -28,7 +28,9 @@ curl --header "Content-Type: application/json" \
   http://localhost:3000/youtube/channels
 ```
 
-To Fetch Records:
+---
+
+__To Fetch Records:__
 
 ```
 curl --request GET \
@@ -42,7 +44,9 @@ curl --request GET \
   http://localhost:3000/youtube/channels?region=asia&sort=-subscribers&limit=5
 ```
 
-To Update Records:
+---
+
+__To Update Records:__
 ```
 curl --header "Content-Type: application/json" \
   --request POST \
@@ -50,11 +54,15 @@ curl --header "Content-Type: application/json" \
   http://localhost:3000/youtube/channels?name=t-series
 ```
 
-To Delete Recrods:
+---
+
+__To Delete Recrods:__
 ```
 curl --request DELETE \
   http://localhost:3000/youtube/channels?name=t-series
 ```
+
+---
 
 ## How to Set up?
 ```
@@ -64,7 +72,7 @@ npm install
 node index.js
 ```
 
-NOTE: Gratis needs a MongoDB server to store the data 💾.
+> NOTE: Gratis needs a MongoDB server to store the data 💾.
 
 To run it on a specific port. use:
 ```
