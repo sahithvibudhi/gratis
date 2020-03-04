@@ -74,8 +74,13 @@ curl --request DELETE \
 ```
 git clone https://github.com/sahithvibudhi/gratis.git
 cd gratis
+
 npm install
-node index.js
+npm start
+
+# or
+
+docker-compose up
 ```
 
 > NOTE: Gratis needs a MongoDB server to store the data 💾.

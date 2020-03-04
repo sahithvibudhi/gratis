@@ -19,6 +19,7 @@ async function handle(req, res) {
     if(req.method == 'OPTIONS') {
         headers.setCORS(req, res);
     }
+    // route /gratis is reserved by gratis. shall be used to load dashboard/gratis dashboard APIs
     else if (req.pathname.startsWith('/gratis')) {
         await gratisHandler(req, res);
     }

@@ -119,6 +119,10 @@ const asyncLogin = async (req) => {
     });
 }
 
+/**
+ * fetches User details from github by access_token
+ * @param access_token 
+ */
 const asyncFetchUserDetails = async (access_token) => {
     return new Promise( (resolve, reject) => {
         request.get({
