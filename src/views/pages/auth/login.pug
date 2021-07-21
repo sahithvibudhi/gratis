@@ -1,7 +1,7 @@
 extends ../../layouts/dashboard
 
 block content 
-    form(method="POST", action="/login")
+    form(method="POST", action="/auth/login")
         input(type="text", name="username", class="p-2 border border-indigo-600")
         input(type="password", name="password", class="p-2 border border-indigo-600")
         input(type="submit", value="login", class="p-2 border border-indigo-600")

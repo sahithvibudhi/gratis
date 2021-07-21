@@ -11,8 +11,9 @@ export const login = (req: Request, res: Response) => {
     if (username !== config.ADMIN_USERNAME || password != config.ADMIN_PASSWORD) {
         return res.redirect('/login?error');
     }
+    // @ts-ignore
     req.session.username = username;
-    return res.redirect('/dashboard');
+    return res.redirect('/admin/dashboard');
 }
 
 export const logout = (req: Request, res: Response) => {
