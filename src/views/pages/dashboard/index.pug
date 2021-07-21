@@ -1,0 +1,14 @@
+extends ../../layouts/main
+
+block content 
+    a(href="/admin/logout") logout
+    a(href="/admin/settings") settings
+    form(action="/admin/config/apis", method="POST")
+        input(name="name")
+        input(name="path")
+        p payload structure:
+        input(name="payload[key]")
+        input(name="payload[value]")
+        input(name="payload[key]")
+        input(name="payload[value]")
+        input(type="submit")

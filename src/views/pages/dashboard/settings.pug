@@ -1,0 +1,12 @@
+extends ../../layouts/main
+
+block content 
+    a(href="/admin/logout") logout
+    a(href="/admin/settings") settings
+    form(action="/admin/config/keys", method="POST")
+        input(name="title")
+        select(name='apis' multiple='')
+            option(value='users') users
+            option(value='orgs') orgs
+            option(value='settings') settings
+        input(type="submit")
